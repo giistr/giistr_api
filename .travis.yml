@@ -18,6 +18,7 @@ before_script:
 script:
   - export GIISTR_DATABASE_URL=./travis/giistr.sqlite
   - cargo build
+  - cargo build --release
 env:
   global:
     - TRAVIS_CARGO_NIGHTLY_FEATURE=""
