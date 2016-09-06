@@ -5,5 +5,6 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-pub mod user;
+pub mod repo;
 pub mod tag;
+pub mod user;
