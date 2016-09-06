@@ -11,6 +11,7 @@ use router::Router;
 
 #[macro_use]
 pub mod context;
+pub mod repo;
 pub mod tag;
 pub mod user;
 
@@ -20,14 +21,28 @@ pub fn not_found(_: &mut Request) -> IronResult<Response> {
 
 pub fn init() -> Router {
     router!(
+        // tag crud
         get "/api/v1/tag/:id" => wrap_ctx!(tag::get),
         get "/api/v1/tags" => wrap_ctx!(tag::list),
         put "/api/v1/tag" => wrap_ctx!(tag::update),
         post "/api/v1/tag" => wrap_ctx!(tag::create),
         delete "/api/v1/tag/:id" => wrap_ctx!(tag::delete),
 
+        // user listing (for debuging)
         get "/api/v1/user/:id" => wrap_ctx!(user::get),
         get "/api/v1/users" => wrap_ctx!(user::list),
+
+        // repositories crud
+        get "/api/v1/repo/:id" => wrap_ctx!(repo::get),
+        get "/api/v1/repos" => wrap_ctx!(repo::list),
+        post "/api/v1/repo" => wrap_ctx!(repo::create),
+        delete "/api/v1/repo" => wrap_ctx!(repo::delete),
+
+        // tags associations
+        // get the list of tags for a given repository
+        // get "/api/v1/tags/repo/:id" => wrap_ctx!(repository_tag::list_for_repo),
+        // post "/api/v1/tag/:id/repo/:id" => wrap_ctx!(repository_tag::create),
+        // post "/api/v1/tag/:id/repo/:id" => wrap_ctx!(repository_tag::delete),
 
         any "/" => not_found,
         any "/*" => not_found,
