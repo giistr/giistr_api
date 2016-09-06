@@ -37,7 +37,7 @@ pub fn update(db: &mut SqliteConnection, mut t: Tag) -> Result<Tag, json::Error>
     }
 }
 
-pub fn get(db: &mut SqliteConnection, get_id: &str) -> Result<Tag, DieselError> {
+pub fn get<>(db: &mut SqliteConnection, get_id: &str) -> Result<Tag, DieselError> {
     use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
     use db::schemas::tags::dsl::{tags, id};
     tags.filter(id.eq(get_id)).first::<Tag>(db)

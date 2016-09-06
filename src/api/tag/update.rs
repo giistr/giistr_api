@@ -23,7 +23,14 @@ pub fn update(ctx: Context, req: &mut Request) -> IronResult<Response> {
     let db = &mut *ctx.db.get().expect("cannot get sqlite connection from the context");
 
     // one match only
-    let ut = try_or_json_error!(json::from_body::<UpdateTag, _>(&mut req.body));
+    let mut ut = try_or_json_error!(json::from_body::<UpdateTag, _>(&mut req.body));
+
+    // trim name
+    ut.name = ut.name.trim().into();
+    // ensure not empty
+    if &*ut.name == "" {
+        return responses::bad_request("tag name cannot be empty");
+    }
 
     // get the message
     let mut t = match tag_repo::get(db, &*ut.id) {

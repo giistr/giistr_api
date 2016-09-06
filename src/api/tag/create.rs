@@ -39,7 +39,13 @@ pub fn create(ctx: Context, req: &mut Request) -> IronResult<Response> {
 
     // get the message from the body
     // it must contains exlicitly ONE CreateTag struct
-    let ct = try_or_json_error!(json::from_body::<CreateTag, _>(&mut req.body));
+    let mut ct = try_or_json_error!(json::from_body::<CreateTag, _>(&mut req.body));
+
+    // trim tag name
+    ct.name = ct.name.trim().into();
+    if &*ct.name == "" {
+        return responses::bad_request("tag name cannot be empty");
+    }
 
     // convert input to db models
     let mut t: Tag = ct.into();

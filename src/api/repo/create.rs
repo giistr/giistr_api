@@ -40,6 +40,11 @@ pub fn create(ctx: Context, req: &mut Request) -> IronResult<Response> {
     // it must contains exlicitly ONE CreateRepo struct
     let cr = try_or_json_error!(json::from_body::<CreateRepo, _>(&mut req.body));
 
+    // ensure repo id not empty
+    if &*cr.github_repo_id == "" {
+        return responses::bad_request("github_repo_id cannot be empty");
+    }
+
     // convert input to db models
     let mut r: Repo = cr.into();
     // set the current user id to the tag user_id
