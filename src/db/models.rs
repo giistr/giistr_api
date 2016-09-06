@@ -58,9 +58,9 @@ pub struct Tag {
 }
 
 #[derive(Display, Debug, Eq, PartialEq, Default, Clone, AsChangeset, Queryable, Serialize, Deserialize)]
-#[insertable_into(repository_tags)]
-#[changeset_for(repository_tags)]
-pub struct RepositoryTag {
+#[insertable_into(repository_tag_assocs)]
+#[changeset_for(repository_tag_assocs)]
+pub struct RepositoryTagAssoc {
     pub repo_id: String,
     pub tag_id: String,
 }

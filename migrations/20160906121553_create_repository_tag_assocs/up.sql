@@ -1,4 +1,4 @@
-CREATE TABLE repository_tags (
+CREATE TABLE repository_tag_assocs (
   id VARCHAR(36) NOT NULL PRIMARY KEY,
   repo_id VARCHAR(36) NOT NULL,
   tag_id VARCHAR(36) NOT NULL,

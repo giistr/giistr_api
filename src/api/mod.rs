@@ -14,6 +14,7 @@ pub mod context;
 pub mod repo;
 pub mod tag;
 pub mod user;
+//pub mod repository_tag_assoc;
 
 pub fn not_found(_: &mut Request) -> IronResult<Response> {
     responses::not_found("url not found on this server")
