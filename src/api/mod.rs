@@ -14,7 +14,7 @@ pub mod context;
 pub mod repo;
 pub mod tag;
 pub mod user;
-//pub mod repository_tag_assoc;
+pub mod repository_tag_assoc;
 
 pub fn not_found(_: &mut Request) -> IronResult<Response> {
     responses::not_found("url not found on this server")
@@ -41,9 +41,11 @@ pub fn init() -> Router {
 
         // tags associations
         // get the list of tags for a given repository
-        // get "/api/v1/tags/repo/:id" => wrap_ctx!(repository_tag::list_for_repo),
-        // post "/api/v1/tag/:id/repo/:id" => wrap_ctx!(repository_tag::create),
-        // post "/api/v1/tag/:id/repo/:id" => wrap_ctx!(repository_tag::delete),
+        // get "/api/v1/tags/repo/:id" => wrap_ctx!(repository_tag_assoc::list_for_repo),
+        // add a tag for a repository
+        post "/api/v1/tag/:tag_id/repo/:repo_id" => wrap_ctx!(repository_tag_assoc::create),
+        // delete a tag for a repository
+        // delete "/api/v1/tag/:id/repo/:id" => wrap_ctx!(repository_tag_assoc::delete),
 
         any "/" => not_found,
         any "/*" => not_found,

@@ -5,7 +5,11 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-pub mod repo;
-pub mod repository_tag_assoc;
-pub mod tag;
-pub mod user;
+pub use self::create::create;
+//pub use self::list_for_repo::list_for_repo;
+//pub use self::delete::delete;
+
+mod common;
+mod create;
+mod list_for_repo;
+mod delete;

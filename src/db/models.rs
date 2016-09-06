@@ -61,6 +61,7 @@ pub struct Tag {
 #[insertable_into(repository_tag_assocs)]
 #[changeset_for(repository_tag_assocs)]
 pub struct RepositoryTagAssoc {
+    pub id: String,
     pub repo_id: String,
     pub tag_id: String,
 }
