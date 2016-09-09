@@ -11,14 +11,16 @@ addons:
       - cmake
 rust:
   - nightly
+addons:
+  postgresql: '9.4'
 before_script:
-  - |
-    pip install 'travis-cargo<0.2' --user &&
-    export PATH=$HOME/.local/bin:$PATH
+  - pip install 'travis-cargo<0.2' --user
+  - export PATH=$HOME/.local/bin:$PATH
+  - psql -c 'create database giistr;' -U postgres
 script:
-  - export GIISTR_DATABASE_URL=./travis/giistr.sqlite
   - cargo build
-  - cargo build --release
 env:
   global:
     - TRAVIS_CARGO_NIGHTLY_FEATURE=""
+    - DATABASE_URL=postgres://postgres@localhost/giistr
+    - GIISTR_DATABASE_URL=postgres://postgres@localhost/giistr
