@@ -2,7 +2,7 @@
 name = "giistr_api"
 version = "0.1.0"
 dependencies = [
- "backit 0.1.0 (git+https://github.com/jeremyletang/backit)",
+ "backit 0.1.0",
  "chrono 0.2.25 (registry+https://github.com/rust-lang/crates.io-index)",
  "diesel 0.7.0 (git+https://github.com/jeremyletang/diesel)",
  "diesel_codegen 0.7.2 (git+https://github.com/jeremyletang/diesel)",
@@ -39,7 +39,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "backit"
 version = "0.1.0"
-source = "git+https://github.com/jeremyletang/backit#74abd70fe8bc4d7ad07c6618224820bf72d15218"
 dependencies = [
  "diesel 0.7.0 (git+https://github.com/jeremyletang/diesel)",
  "diesel_codegen 0.7.2 (git+https://github.com/jeremyletang/diesel)",
@@ -711,7 +710,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [metadata]
 "checksum aho-corasick 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)" = "2b3fb52b09c1710b961acb35390d514be82e4ac96a9969a8e38565a29b878dc9"
 "checksum aster 0.26.1 (registry+https://github.com/rust-lang/crates.io-index)" = "baa18cafee9499ac766e76117577b84efa98f43b81964cf167cd800b29176db3"
-"checksum backit 0.1.0 (git+https://github.com/jeremyletang/backit)" = "<none>"
 "checksum bitflags 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)" = "aad18937a628ec6abcd26d1489012cc0e18c21798210f491af69ded9b881106d"
 "checksum byteorder 0.3.13 (registry+https://github.com/rust-lang/crates.io-index)" = "29b2aa490a8f546381308d68fc79e6bd753cd3ad839f7a7172897f1feedfa175"
 "checksum chrono 0.2.25 (registry+https://github.com/rust-lang/crates.io-index)" = "9213f7cd7c27e95c2b57c49f0e69b1ea65b27138da84a170133fd21b07659c00"

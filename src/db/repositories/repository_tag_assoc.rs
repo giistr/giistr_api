@@ -5,14 +5,14 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-use backit::{json, time};
+use backit::json;
 use db::models::RepositoryTagAssoc;
 use diesel::result::Error as DieselError;
 use std::error::Error;
 use uuid::Uuid;
-use diesel::sqlite::SqliteConnection;
+use diesel::pg::PgConnection;
 
-pub fn create(db: &mut SqliteConnection, mut rta: RepositoryTagAssoc)
+pub fn create(db: &mut PgConnection, mut rta: RepositoryTagAssoc)
               -> Result<RepositoryTagAssoc, json::Error> {
     use diesel::{self, ExecuteDsl};
     use db::schemas::repository_tag_assocs;
@@ -26,7 +26,7 @@ pub fn create(db: &mut SqliteConnection, mut rta: RepositoryTagAssoc)
     }
 }
 
-pub fn get(db: &mut SqliteConnection, get_repo_id: &str, get_tag_id: &str)
+pub fn get(db: &mut PgConnection, get_repo_id: &str, get_tag_id: &str)
            -> Result<RepositoryTagAssoc, DieselError> {
     use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
     use db::schemas::repository_tag_assocs::dsl::{repository_tag_assocs, repo_id, tag_id};
@@ -35,7 +35,7 @@ pub fn get(db: &mut SqliteConnection, get_repo_id: &str, get_tag_id: &str)
         .filter(tag_id.eq(get_tag_id)).first::<RepositoryTagAssoc>(db)
 }
 
-pub fn delete(db: &mut SqliteConnection, delete_repo_id: &str, delete_tag_id: &str)
+pub fn delete(db: &mut PgConnection, delete_repo_id: &str, delete_tag_id: &str)
               -> Result<usize, DieselError> {
     use diesel::{self, ExecuteDsl, FilterDsl, ExpressionMethods};
     use db::schemas::repository_tag_assocs::dsl::{repository_tag_assocs, repo_id, tag_id};

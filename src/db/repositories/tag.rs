@@ -10,9 +10,10 @@ use db::models::Tag;
 use diesel::result::Error as DieselError;
 use std::error::Error;
 use uuid::Uuid;
-use diesel::sqlite::SqliteConnection;
+//use diesel::sqlite::SqliteConnection;
+use diesel::pg::PgConnection;
 
-pub fn create(db: &mut SqliteConnection, mut t: Tag) -> Result<Tag, json::Error> {
+pub fn create(db: &mut PgConnection, mut t: Tag) -> Result<Tag, json::Error> {
     use diesel::{self, ExecuteDsl};
     use db::schemas::tags;
 
@@ -27,7 +28,7 @@ pub fn create(db: &mut SqliteConnection, mut t: Tag) -> Result<Tag, json::Error>
     }
 }
 
-pub fn update(db: &mut SqliteConnection, mut t: Tag) -> Result<Tag, json::Error> {
+pub fn update(db: &mut PgConnection, mut t: Tag) -> Result<Tag, json::Error> {
     use diesel::SaveChangesDsl;
     t.updated_at = Some(time::timestamp::now() as i32);
 
@@ -37,31 +38,31 @@ pub fn update(db: &mut SqliteConnection, mut t: Tag) -> Result<Tag, json::Error>
     }
 }
 
-pub fn get(db: &mut SqliteConnection, get_id: &str) -> Result<Tag, DieselError> {
+pub fn get(db: &mut PgConnection, get_id: &str) -> Result<Tag, DieselError> {
     use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
     use db::schemas::tags::dsl::{tags, id};
     tags.filter(id.eq(get_id)).first::<Tag>(db)
 }
 
-pub fn get_from_name_and_user_id(db: &mut SqliteConnection, get_name: &str, get_user_id: &str) -> Result<Tag, DieselError> {
+pub fn get_from_name_and_user_id(db: &mut PgConnection, get_name: &str, get_user_id: &str) -> Result<Tag, DieselError> {
     use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
     use db::schemas::tags::dsl::{tags, name, user_id};
     tags.filter(user_id.eq(get_user_id)).filter(name.eq(get_name)).first::<Tag>(db)
 }
 
-pub fn list(db: &mut SqliteConnection) -> Result<Vec<Tag>, DieselError> {
+pub fn list(db: &mut PgConnection) -> Result<Vec<Tag>, DieselError> {
     use diesel::LoadDsl;
     use db::schemas::tags::dsl::tags;
     tags.load::<Tag>(db)
 }
 
-pub fn list_for_user_id(db: &mut SqliteConnection, list_user_id: &str) -> Result<Vec<Tag>, DieselError> {
+pub fn list_for_user_id(db: &mut PgConnection, list_user_id: &str) -> Result<Vec<Tag>, DieselError> {
     use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
     use db::schemas::tags::dsl::{tags, user_id};
     tags.filter(user_id.eq(list_user_id)).load::<Tag>(db)
 }
 
-pub fn delete(db: &mut SqliteConnection, delete_id: &str)
+pub fn delete(db: &mut PgConnection, delete_id: &str)
               -> Result<usize, DieselError> {
     use diesel::{self, ExecuteDsl, FilterDsl, ExpressionMethods};
     use db::schemas::tags::dsl::{tags, id};

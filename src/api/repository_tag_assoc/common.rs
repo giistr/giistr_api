@@ -6,7 +6,7 @@
 // except according to those terms.
 
 use db::models::{Tag, Repo, RepositoryTagAssoc};
-use std::convert::{Into, From};
+use std::convert::From;
 
 #[derive(Display, Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
 pub struct RepositoryTagAssocResponse {

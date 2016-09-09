@@ -4,7 +4,8 @@ version = "0.1.0"
 authors = ["jeremyletang <letang.jeremy@gmail.com>"]
 
 [dependencies]
-backit = { git = "https://github.com/jeremyletang/backit" }
+#backit = { git = "https://github.com/jeremyletang/backit" }
+backit = { path = "../backit" }
 chrono = "0.2"
 dotenv = "0.8.0"
 dotenv_macros = "0.9.0"
@@ -18,8 +19,8 @@ serde_json = "^0.8"
 serde_macros = "^0.8"
 time = "0.1.35"
 unicase = "1.4.0"
-diesel = { git = "https://github.com/jeremyletang/diesel", default-features = false, features = ["sqlite"] }
-diesel_codegen = { git = "https://github.com/jeremyletang/diesel", default-features = false, features = ["sqlite"] }
+diesel = { git = "https://github.com/jeremyletang/diesel", default-features = false, features = ["postgres"] }
+diesel_codegen = { git = "https://github.com/jeremyletang/diesel", default-features = false, features = ["postgres"] }
 r2d2 = "0.7.0"
 r2d2-diesel = { git = "https://github.com/jeremyletang/r2d2-diesel" }
 uuid = { version = "0.2", features = ["v4"] }

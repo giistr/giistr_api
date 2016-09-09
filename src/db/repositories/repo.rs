@@ -10,9 +10,9 @@ use db::models::Repo;
 use diesel::result::Error as DieselError;
 use std::error::Error;
 use uuid::Uuid;
-use diesel::sqlite::SqliteConnection;
+use diesel::pg::PgConnection;
 
-pub fn create(db: &mut SqliteConnection, mut r: Repo) -> Result<Repo, json::Error> {
+pub fn create(db: &mut PgConnection, mut r: Repo) -> Result<Repo, json::Error> {
     use diesel::{self, ExecuteDsl};
     use db::schemas::repos;
 
@@ -27,13 +27,13 @@ pub fn create(db: &mut SqliteConnection, mut r: Repo) -> Result<Repo, json::Erro
     }
 }
 
-pub fn get(db: &mut SqliteConnection, get_id: &str) -> Result<Repo, DieselError> {
+pub fn get(db: &mut PgConnection, get_id: &str) -> Result<Repo, DieselError> {
     use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
     use db::schemas::repos::dsl::{repos, id};
     repos.filter(id.eq(get_id)).first::<Repo>(db)
 }
 
-pub fn get_from_github_repo_id_and_user_id(db: &mut SqliteConnection, get_github_repo_id: &str, get_user_id: &str) -> Result<Repo, DieselError> {
+pub fn get_from_github_repo_id_and_user_id(db: &mut PgConnection, get_github_repo_id: &str, get_user_id: &str) -> Result<Repo, DieselError> {
     use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
     use db::schemas::repos::dsl::{repos, github_repo_id, user_id};
     repos
@@ -42,13 +42,13 @@ pub fn get_from_github_repo_id_and_user_id(db: &mut SqliteConnection, get_github
         .first::<Repo>(db)
 }
 
-pub fn list_for_user_id(db: &mut SqliteConnection, list_user_id: &str) -> Result<Vec<Repo>, DieselError> {
+pub fn list_for_user_id(db: &mut PgConnection, list_user_id: &str) -> Result<Vec<Repo>, DieselError> {
     use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
     use db::schemas::repos::dsl::{repos, user_id};
     repos.filter(user_id.eq(list_user_id)).load::<Repo>(db)
 }
 
-pub fn delete(db: &mut SqliteConnection, delete_id: &str)
+pub fn delete(db: &mut PgConnection, delete_id: &str)
               -> Result<usize, DieselError> {
     use diesel::{self, ExecuteDsl, FilterDsl, ExpressionMethods};
     use db::schemas::repos::dsl::{repos, id};

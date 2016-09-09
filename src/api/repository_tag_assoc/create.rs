@@ -7,8 +7,8 @@
 
 use api::context::Context;
 use api::repository_tag_assoc::common::RepositoryTagAssocResponse;
-use backit::{responses, json, time};
-use db::models::{Repo, Tag, RepositoryTagAssoc};
+use backit::responses;
+use db::models::RepositoryTagAssoc;
 use db::repositories::repository_tag_assoc as rt_assoc_repo;
 use db::repositories::tag as tag_repo;
 use db::repositories::repo as repo_repo;
@@ -27,7 +27,6 @@ pub struct CreateRepositoryTagAssoc {
 
 impl Into<RepositoryTagAssoc> for CreateRepositoryTagAssoc {
     fn into(self) -> RepositoryTagAssoc {
-        let now = time::timestamp::now() as i32;
         RepositoryTagAssoc {
             id: Uuid::new_v4().to_string(),
             repo_id: self.repo_id,
@@ -45,7 +44,7 @@ pub fn create(ctx: Context, req: &mut Request) -> IronResult<Response> {
     };
     
     // convert input to db models
-    let mut rta: RepositoryTagAssoc = crta.into();
+    let rta: RepositoryTagAssoc = crta.into();
 
     // first test if this tag do not exist
     match rt_assoc_repo::get(db, &*rta.repo_id, &*rta.tag_id) {
