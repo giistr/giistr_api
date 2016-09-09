@@ -17,6 +17,8 @@ before_script:
   - pip install 'travis-cargo<0.2' --user
   - export PATH=$HOME/.local/bin:$PATH
   - psql -c 'create database giistr;' -U postgres
+  - cargo install diesel_cli
+  - diesel migration run
 script:
   - cargo build
 env:
