@@ -4,8 +4,8 @@ version = "0.1.0"
 authors = ["jeremyletang <letang.jeremy@gmail.com>"]
 
 [dependencies]
-#backit = { git = "https://github.com/jeremyletang/backit" }
-backit = { path = "../backit" }
+backit = { git = "https://github.com/jeremyletang/backit" }
+#backit = { path = "../backit" }
 chrono = "0.2"
 dotenv = "0.8.0"
 dotenv_macros = "0.9.0"
