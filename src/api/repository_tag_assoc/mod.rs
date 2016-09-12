@@ -7,9 +7,11 @@
 
 pub use self::create::create;
 pub use self::list_for_repo::list_for_repo;
+pub use self::list_for_tag::list_for_tag;
 //pub use self::delete::delete;
 
 mod common;
 mod create;
 mod list_for_repo;
+mod list_for_tag;
 mod delete;

@@ -54,3 +54,12 @@ pub fn get_tags_for_repo(db: &mut PgConnection, get_repo_id: &str)
         .filter(repo_id.eq(get_repo_id))
         .load::<RepositoryTagAssoc>(db)
 }
+
+pub fn get_repos_for_tag(db: &mut PgConnection, get_tag_id: &str)
+           -> Result<Vec<RepositoryTagAssoc>, DieselError> {
+    use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
+    use db::schemas::repository_tag_assocs::dsl::{repository_tag_assocs, tag_id};
+    repository_tag_assocs
+        .filter(tag_id.eq(get_tag_id))
+        .load::<RepositoryTagAssoc>(db)
+}

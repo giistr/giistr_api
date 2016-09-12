@@ -54,3 +54,11 @@ pub fn delete(db: &mut PgConnection, delete_id: &str)
     use db::schemas::repos::dsl::{repos, id};
     diesel::delete(repos.filter(id.eq(delete_id))).execute(db)
 }
+
+pub fn get_all(db: &mut PgConnection, ids: &[String]) -> Result<Vec<Repo>, DieselError> {
+    use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
+    use db::schemas::repos::dsl::{repos, id};
+    use diesel::pg::expression::dsl::any;
+    repos.filter(id.eq(any(ids)))
+        .load::<Repo>(db)
+}
