@@ -35,7 +35,15 @@ pub fn get(db: &mut PgConnection, get_repo_id: &str, get_tag_id: &str)
         .filter(tag_id.eq(get_tag_id)).first::<RepositoryTagAssoc>(db)
 }
 
-pub fn delete(db: &mut PgConnection, delete_repo_id: &str, delete_tag_id: &str)
+pub fn _get(db: &mut PgConnection, get_id: &str)
+           -> Result<RepositoryTagAssoc, DieselError> {
+    use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
+    use db::schemas::repository_tag_assocs::dsl::{repository_tag_assocs, id};
+    repository_tag_assocs
+        .filter(id.eq(get_id)).first::<RepositoryTagAssoc>(db)
+}
+
+pub fn delete_from_ids(db: &mut PgConnection, delete_repo_id: &str, delete_tag_id: &str)
               -> Result<usize, DieselError> {
     use diesel::{self, ExecuteDsl, FilterDsl, ExpressionMethods};
     use db::schemas::repository_tag_assocs::dsl::{repository_tag_assocs, repo_id, tag_id};
@@ -43,6 +51,15 @@ pub fn delete(db: &mut PgConnection, delete_repo_id: &str, delete_tag_id: &str)
         repository_tag_assocs
             .filter(tag_id.eq(delete_tag_id))
             .filter(repo_id.eq(delete_repo_id))
+    ).execute(db)
+}
+
+pub fn delete(db: &mut PgConnection, delete_id: &str)
+              -> Result<usize, DieselError> {
+    use diesel::{self, ExecuteDsl, FilterDsl, ExpressionMethods};
+    use db::schemas::repository_tag_assocs::dsl::{repository_tag_assocs, id};
+    diesel::delete(
+        repository_tag_assocs.filter(id.eq(delete_id))
     ).execute(db)
 }
 

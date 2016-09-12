@@ -48,8 +48,9 @@ pub fn init() -> Router {
         
         // add a tag for a repository
         post "/api/v1/tag/:tag_id/repo/:repo_id" => wrap_ctx!(repository_tag_assoc::create),
+
         // delete a tag for a repository
-        // delete "/api/v1/tag/:id/repo/:id" => wrap_ctx!(repository_tag_assoc::delete),
+        delete "/api/v1/repo-tag-assoc/:id" => wrap_ctx!(repository_tag_assoc::delete),
 
         any "/" => not_found,
         any "/*" => not_found,
