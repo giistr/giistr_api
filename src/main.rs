@@ -20,6 +20,7 @@ extern crate hyper;
 extern crate iron;
 #[macro_use]
 extern crate log;
+extern crate mount;
 #[macro_use]
 extern crate router;
 extern crate r2d2;

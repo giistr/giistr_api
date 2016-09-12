@@ -12,6 +12,7 @@ dependencies = [
  "hyper 0.9.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "iron 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "mount 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "r2d2 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "r2d2-diesel 0.7.1 (git+https://github.com/jeremyletang/r2d2-diesel)",
  "router 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -325,6 +326,15 @@ version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "mount"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "iron 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sequence_trie 0.0.13 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "num"
 version = "0.1.35"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -529,6 +539,11 @@ dependencies = [
 [[package]]
 name = "semver"
 version = "0.1.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "sequence_trie"
+version = "0.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -746,6 +761,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum memchr 0.1.11 (registry+https://github.com/rust-lang/crates.io-index)" = "d8b629fb514376c675b98c1421e80b151d3817ac42d7c667717d282761418d20"
 "checksum mime 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "b5c93a4bd787ddc6e7833c519b73a50883deb5863d76d9b71eb8216fb7f94e66"
 "checksum modifier 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "41f5c9112cb662acd3b204077e0de5bc66305fa8df65c8019d5adb10e9ab6e58"
+"checksum mount 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "c518ef1edf5da3aa1cdd5160c08d1781995ccb74b5669c2315ce29fe6cf6c1f2"
 "checksum num 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)" = "5a9699207fab8b02bd0e56f8f06fee3f26d640303130de548898b4c9704f6d01"
 "checksum num-integer 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)" = "fb24d9bfb3f222010df27995441ded1e954f8f69cd35021f6bef02ca9552fb92"
 "checksum num-iter 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)" = "287a1c9969a847055e1122ec0ea7a5c5d6f72aad97934e131c83d5c08ab4e45c"
@@ -772,6 +788,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum rustc-serialize 0.3.19 (registry+https://github.com/rust-lang/crates.io-index)" = "6159e4e6e559c81bd706afe9c8fd68f547d3e851ce12e76b1de7914bab61691b"
 "checksum rustc_version 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)" = "c5f5376ea5e30ce23c03eb77cbe4962b988deead10910c372b226388b594c084"
 "checksum semver 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)" = "d4f410fedcf71af0345d7607d246e7ad15faaadd49d240ee3b24e5dc21a820ac"
+"checksum sequence_trie 0.0.13 (registry+https://github.com/rust-lang/crates.io-index)" = "d5b4eb0f7d1ff9b9666d8b8ff543f3705dd464025269a5b0e1988ffa60ca1be8"
 "checksum serde 0.8.7 (registry+https://github.com/rust-lang/crates.io-index)" = "9e1979331bc87240ef63a5cd79c69cced8261185d9ca5647ae357f17eaef16f4"
 "checksum serde_codegen 0.8.7 (registry+https://github.com/rust-lang/crates.io-index)" = "aec103831a0b4143957c124e2a9a168e43158f8bf0964b21d5818789eb62d5ac"
 "checksum serde_codegen_internals 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)" = "8488640b7caaa438eb05c74466f9fa91a61bb4e4e7520f3c1cfcf77fb10bdb61"
