@@ -68,3 +68,11 @@ pub fn delete(db: &mut PgConnection, delete_id: &str)
     use db::schemas::tags::dsl::{tags, id};
     diesel::delete(tags.filter(id.eq(delete_id))).execute(db)
 }
+
+pub fn get_all(db: &mut PgConnection, ids: &[String]) -> Result<Vec<Tag>, DieselError> {
+    use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
+    use db::schemas::tags::dsl::{tags, id};
+    use diesel::pg::expression::dsl::any;
+    tags.filter(id.eq(any(ids)))
+        .load::<Tag>(db)
+}

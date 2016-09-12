@@ -41,7 +41,7 @@ pub fn init() -> Router {
 
         // tags associations
         // get the list of tags for a given repository
-        // get "/api/v1/tags/repo/:id" => wrap_ctx!(repository_tag_assoc::list_for_repo),
+        get "/api/v1/tags/repo/:id" => wrap_ctx!(repository_tag_assoc::list_for_repo),
         // add a tag for a repository
         post "/api/v1/tag/:tag_id/repo/:repo_id" => wrap_ctx!(repository_tag_assoc::create),
         // delete a tag for a repository

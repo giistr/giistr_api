@@ -6,7 +6,7 @@
 // except according to those terms.
 
 pub use self::create::create;
-//pub use self::list_for_repo::list_for_repo;
+pub use self::list_for_repo::list_for_repo;
 //pub use self::delete::delete;
 
 mod common;

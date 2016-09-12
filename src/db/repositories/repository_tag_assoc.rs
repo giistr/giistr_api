@@ -45,3 +45,12 @@ pub fn delete(db: &mut PgConnection, delete_repo_id: &str, delete_tag_id: &str)
             .filter(repo_id.eq(delete_repo_id))
     ).execute(db)
 }
+
+pub fn get_tags_for_repo(db: &mut PgConnection, get_repo_id: &str)
+           -> Result<Vec<RepositoryTagAssoc>, DieselError> {
+    use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
+    use db::schemas::repository_tag_assocs::dsl::{repository_tag_assocs, repo_id};
+    repository_tag_assocs
+        .filter(repo_id.eq(get_repo_id))
+        .load::<RepositoryTagAssoc>(db)
+}
