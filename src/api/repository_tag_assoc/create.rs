@@ -35,7 +35,7 @@ impl Into<RepositoryTagAssoc> for CreateRepositoryTagAssoc {
     }
 }
 
-// post /api/v1/tag
+// post /api/v1/tag/:tag_id/repo/:repo_id
 pub fn create(ctx: Context, req: &mut Request) -> IronResult<Response> {
     let db = &mut *ctx.db.get().expect("cannot get sqlite connection from the context");
     let crta = CreateRepositoryTagAssoc {
