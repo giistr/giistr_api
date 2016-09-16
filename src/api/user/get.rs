@@ -13,6 +13,7 @@ use router::Router;
 use serde_json;
 use std::error::Error;
 
+// GET /api/v1/user/:id
 pub fn get(ctx: Context, req: &mut Request) -> IronResult<Response> {
     let db = &mut *ctx.db.get().expect("cannot get sqlite connection from the context");
     let id = req.extensions.get::<Router>()
