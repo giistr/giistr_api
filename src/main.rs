@@ -47,7 +47,7 @@ fn main() {
         .expect(&*format!("cannot init latte api (missing environnement var {})", GIISTR_PORT));
     let db_addr = env::var(GIISTR_DATABASE_URL)
         .expect(&*format!("cannot init latte api (missing environnement var {})", GIISTR_DATABASE_URL));
-    let addr = "127.0.0.1:".to_string() + &*port;
+    let addr = "0.0.0.0:".to_string() + &*port;
 
     let mut chain = Chain::new(api::init());
     chain.link_before(backit::middlewares::MetricsMid);
