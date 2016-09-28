@@ -39,7 +39,7 @@ mod db;
 mod mid;
 
 const GIISTR_PORT: &'static str = "PORT";
-const GIISTR_DATABASE_URL: &'static str = "VCAP_SERVICES";
+const GIISTR_DATABASE_URL: &'static str = "GIISTR_DATABASE_URL";
 
 fn main() {
     let _ = env_logger::init();
