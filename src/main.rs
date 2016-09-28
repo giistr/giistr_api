@@ -38,16 +38,16 @@ mod api;
 mod db;
 mod mid;
 
-const GIISTR_ADDR: &'static str = "GIISTR_ADDR";
-const GIISTR_DATABASE_URL: &'static str = "GIISTR_DATABASE_URL";
+const GIISTR_PORT: &'static str = "PORT";
+const GIISTR_DATABASE_URL: &'static str = "VCAP_SERVICES";
 
 fn main() {
     let _ = env_logger::init();
-    let addr = env::var(GIISTR_ADDR)
-        .expect(&*format!("cannot init latte api (missing environnement var {})", GIISTR_ADDR));
+    let port = env::var(GIISTR_PORT)
+        .expect(&*format!("cannot init latte api (missing environnement var {})", GIISTR_PORT));
     let db_addr = env::var(GIISTR_DATABASE_URL)
         .expect(&*format!("cannot init latte api (missing environnement var {})", GIISTR_DATABASE_URL));
-
+    let addr = "127.0.0.1:".to_string() + &*port;
 
     let mut chain = Chain::new(api::init());
     chain.link_before(backit::middlewares::MetricsMid);

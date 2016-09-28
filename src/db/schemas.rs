@@ -7,4 +7,4 @@
 
 #![allow(unused_imports)]
 
-infer_schema!(dotenv!("GIISTR_DATABASE_URL"));
+infer_schema!(dotenv!("VCAP_SERVICES"));

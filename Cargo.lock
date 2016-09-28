@@ -40,7 +40,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "backit"
 version = "0.1.0"
-source = "git+https://github.com/jeremyletang/backit#aae80fac83a930653ec20a889b0baf410944482f"
+source = "git+https://github.com/jeremyletang/backit#7746f19107455aa0f7d456e5fdfda4bf151fedd8"
 dependencies = [
  "diesel 0.7.0 (git+https://github.com/jeremyletang/diesel)",
  "diesel_codegen 0.7.2 (git+https://github.com/jeremyletang/diesel)",

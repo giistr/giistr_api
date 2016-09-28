@@ -27,4 +27,4 @@ env:
   global:
     - TRAVIS_CARGO_NIGHTLY_FEATURE=""
     - DATABASE_URL=postgres://postgres@localhost/giistr
-    - GIISTR_DATABASE_URL=postgres://postgres@localhost/giistr
+    - VCAP_SERVICES=postgres://postgres@localhost/giistr
