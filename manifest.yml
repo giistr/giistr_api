@@ -1,0 +1,9 @@
+applications:
+
+- buildpack: https://github.com/cloudfoundry/binary-buildpack.git
+  command: ./giistr_api
+  path: target/release/
+  instances: 1
+  memory: 64M
+  stack: cflinuxfs2
+  name: giistr-api
