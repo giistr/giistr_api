@@ -6,13 +6,11 @@
 // except according to those terms.
 
 #![feature(custom_derive, custom_attribute, proc_macro, plugin)]
-#![plugin(diesel_codegen, dotenv_macros, log)]
 #![allow(unused_attributes, dead_code)]
 
 #[macro_use]
 extern crate backit;
 extern crate chrono;
-extern crate dotenv;
 #[macro_use]
 extern crate diesel;
 #[macro_use]
