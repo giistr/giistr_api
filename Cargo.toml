@@ -15,13 +15,16 @@ iron = "0.4.0"
 log = "0.3.6"
 mount = "0.2.1"
 router = "0.2.0"
-serde = "0.8.7"
-serde_json = "0.8.2"
-serde_macros = "0.8.7"
+serde = "0.8.19"
+serde_json = "0.8.3"
+serde_derive = "0.8.19"
 time = "0.1.35"
 unicase = "1.4.0"
-diesel = { git = "https://github.com/jeremyletang/diesel", default-features = false, features = ["postgres"] }
-diesel_codegen = { git = "https://github.com/jeremyletang/diesel", default-features = false, features = ["postgres"] }
-r2d2 = "0.7.0"
-r2d2-diesel = { git = "https://github.com/jeremyletang/r2d2-diesel" }
+diesel = "0.8.2"
+diesel_codegen = { version = "0.8.2", features = ["postgres"], optional = false }
+#diesel = { git = "https://github.com/jeremyletang/diesel", default-features = false, features = ["postgres"] }
+#diesel_codegen = { git = "https://github.com/jeremyletang/diesel", default-features = false, features = ["postgres"] }
+r2d2 = "0.7.1"
+r2d2-diesel = "0.8.0"
+#r2d2-diesel = { git = "https://github.com/jeremyletang/r2d2-diesel" }
 uuid = { version = "0.2", features = ["v4"] }

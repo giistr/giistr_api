@@ -5,8 +5,8 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-#![feature(custom_derive, custom_attribute, plugin)]
-#![plugin(diesel_codegen, serde_macros, dotenv_macros, log)]
+#![feature(custom_derive, custom_attribute, proc_macro, plugin)]
+#![plugin(diesel_codegen, dotenv_macros, log)]
 #![allow(unused_attributes, dead_code)]
 
 #[macro_use]
@@ -15,6 +15,8 @@ extern crate chrono;
 extern crate dotenv;
 #[macro_use]
 extern crate diesel;
+#[macro_use]
+extern crate diesel_codegen;
 extern crate env_logger;
 extern crate hyper;
 extern crate iron;
@@ -26,6 +28,8 @@ extern crate router;
 extern crate r2d2;
 extern crate r2d2_diesel;
 extern crate serde;
+#[macro_use]
+extern crate serde_derive;
 extern crate serde_json;
 extern crate time;
 extern crate unicase;

@@ -8,8 +8,8 @@
 use super::schemas::*;
 use diesel::ExpressionMethods;
 
-#[derive(Display, Debug, Eq, PartialEq, Default, Clone, AsChangeset, Identifiable, Queryable, Serialize, Deserialize)]
-#[insertable_into(users)]
+#[derive(Display, Debug, Eq, PartialEq, Default, Clone, AsChangeset, Identifiable, Queryable, Serialize, Deserialize, Insertable)]
+#[table_name = "users"]
 #[changeset_for(users)]
 pub struct User {
     pub id: String,
@@ -33,8 +33,8 @@ impl User {
     }
 }
 
-#[derive(Display, Debug, Eq, PartialEq, Default, Clone, AsChangeset, Identifiable, Queryable, Serialize, Deserialize)]
-#[insertable_into(repos)]
+#[derive(Display, Debug, Eq, PartialEq, Default, Clone, AsChangeset, Identifiable, Queryable, Serialize, Deserialize, Insertable)]
+#[table_name = "repos"]
 #[changeset_for(repos)]
 pub struct Repo {
     pub id: String,
@@ -45,8 +45,8 @@ pub struct Repo {
     pub github_repo_id: String,
 }
 
-#[derive(Display, Debug, Eq, PartialEq, Default, Clone, AsChangeset, Identifiable, Queryable, Serialize, Deserialize)]
-#[insertable_into(tags)]
+#[derive(Display, Debug, Eq, PartialEq, Default, Clone, AsChangeset, Identifiable, Queryable, Serialize, Deserialize, Insertable)]
+#[table_name = "tags"]
 #[changeset_for(tags)]
 pub struct Tag {
     pub id: String,
@@ -57,8 +57,8 @@ pub struct Tag {
     pub name: String,
 }
 
-#[derive(Display, Debug, Eq, PartialEq, Default, Clone, AsChangeset, Queryable, Serialize, Deserialize)]
-#[insertable_into(repository_tag_assocs)]
+#[derive(Display, Debug, Eq, PartialEq, Default, Clone, AsChangeset, Queryable, Serialize, Deserialize, Insertable)]
+#[table_name = "repository_tag_assocs"]
 #[changeset_for(repository_tag_assocs)]
 pub struct RepositoryTagAssoc {
     pub id: String,
