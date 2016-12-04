@@ -15,7 +15,7 @@ use std::convert::Into;
 use std::error::Error;
 use uuid::Uuid;
 
-#[derive(Display, Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
+#[derive(Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
 pub struct CreateRepo {
     pub github_repo_id: String,
 }

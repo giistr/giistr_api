@@ -8,7 +8,7 @@
 use db::models::{Tag, Repo, RepositoryTagAssoc};
 use std::convert::From;
 
-#[derive(Display, Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
+#[derive(Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
 pub struct RepositoryTagAssocResponse {
     pub assoc: RepositoryTagAssoc,
     pub repo: Repo,

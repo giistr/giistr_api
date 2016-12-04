@@ -19,7 +19,7 @@ use std::convert::Into;
 use std::error::Error;
 use uuid::Uuid;
 
-#[derive(Display, Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
+#[derive(Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
 pub struct CreateRepositoryTagAssoc {
     pub repo_id: String,
     pub tag_id: String,
@@ -42,7 +42,7 @@ pub fn create(ctx: Context, req: &mut Request) -> IronResult<Response> {
         repo_id: req.extensions.get::<Router>().unwrap().find("repo_id").unwrap().to_string(),
         tag_id: req.extensions.get::<Router>().unwrap().find("tag_id").unwrap().to_string(),
     };
-    
+
     // convert input to db models
     let rta: RepositoryTagAssoc = crta.into();
 
@@ -71,7 +71,7 @@ pub fn create(ctx: Context, req: &mut Request) -> IronResult<Response> {
         Err(e) => return responses::internal_error(e.description()),
     };
 
-    
+
     // insert tag in databse + return inserted value
     match rt_assoc_repo::create(db, rta) {
         Ok(rta) => {

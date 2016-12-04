@@ -12,7 +12,7 @@ use iron::{Request, Response, IronResult};
 use serde_json;
 use std::error::Error;
 
-#[derive(Display, Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
+#[derive(Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
 pub struct UpdateTag {
     pub id: String,
     pub name: String,
