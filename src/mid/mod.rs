@@ -7,6 +7,8 @@
 
 pub use self::fake_github::FakeGithubMid;
 pub use self::github::GithubMid;
+pub use self::simple_cors::SimpleCors;
 
+pub mod simple_cors;
 pub mod fake_github;
 pub mod github;

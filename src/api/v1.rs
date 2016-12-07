@@ -6,6 +6,7 @@
 // except according to those terms.
 
 use api::{repo, tag, user, repository_tag_assoc, not_found};
+use backit::responses;
 use iron::Request;
 use router::Router;
 
@@ -34,15 +35,16 @@ pub fn api() -> Router {
 
         // get the list of repos for a tag
         get "/repos/tag/:id" => wrap_ctx!(repository_tag_assoc::list_for_tag),
-        
+
         // add a tag for a repository
         post "/tag/:tag_id/repo/:repo_id" => wrap_ctx!(repository_tag_assoc::create),
 
         // delete a tag for a repository
         delete "/repo-tag-assoc/:id" => wrap_ctx!(repository_tag_assoc::delete),
 
+        // options "/*" => |_: &mut Request| responses::ok(""),
+
         any "/" => not_found,
         any "/*" => not_found,
     )
 }
-

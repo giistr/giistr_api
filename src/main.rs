@@ -53,6 +53,7 @@ fn main() {
 
     let mut chain = Chain::new(api::init());
     chain.link_before(backit::middlewares::MetricsMid);
+    chain.link_before(mid::SimpleCors);
     // chain.link_before(backit::middlewares::SqliteConnectionMid::new(db_addr));
     chain.link_before(backit::middlewares::PostgresConnectionMid::new(db_addr));
     chain.link_before(mid::FakeGithubMid{});
