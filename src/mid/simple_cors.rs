@@ -41,7 +41,8 @@ impl BeforeMiddleware for SimpleCors {
         let allow_origin = Header(AccessControlAllowOrigin::Any);
         let allow_method = Header(AccessControlAllowMethods(vec![Get, Post, Put, Delete, Options]));
         let allow_headers = Header(AccessControlAllowHeaders(vec![
-            UniCase("x-github-token".to_owned())
+            UniCase("x-github-token".to_owned()),
+            UniCase("content-type".to_owned())
         ]));
         let modifiers = (Status::Ok, content_type, allow_origin, allow_method, allow_headers);
         Err(IronError::new(FakeError, modifiers))
