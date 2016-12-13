@@ -11,9 +11,11 @@ use iron::error::IronError;
 use iron::headers::ContentType;
 use iron::headers::AccessControlAllowOrigin;
 use iron::headers::AccessControlAllowMethods;
+use iron::headers::AccessControlAllowHeaders;
 use iron::modifiers::Header;
 use std::error::Error;
 use std::fmt;
+use unicase::UniCase;
 
 pub struct SimpleCors;
 
@@ -38,6 +40,10 @@ impl BeforeMiddleware for SimpleCors {
         let content_type = Header(ContentType::json());
         let allow_origin = Header(AccessControlAllowOrigin::Any);
         let allow_method = Header(AccessControlAllowMethods(vec![Get, Post, Put, Delete, Options]));
-        Err(IronError::new(FakeError, (Status::Ok, content_type, allow_origin, allow_method)))
+        let allow_headers = Header(AccessControlAllowHeaders(vec![
+            UniCase("x-github-token".to_owned())
+        ]));
+        let modifiers = (Status::Ok, content_type, allow_origin, allow_method, allow_headers);
+        Err(IronError::new(FakeError, modifiers))
     }
 }
