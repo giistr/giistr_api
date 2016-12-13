@@ -8,6 +8,10 @@
 use iron::{BeforeMiddleware, Request, IronResult};
 use iron::status::Status;
 use iron::error::IronError;
+use iron::headers::ContentType;
+use iron::headers::AccessControlAllowOrigin;
+use iron::headers::AccessControlAllowMethods;
+use iron::modifiers::Header;
 use std::error::Error;
 use std::fmt;
 
@@ -30,6 +34,10 @@ impl fmt::Display for FakeError {
 
 impl BeforeMiddleware for SimpleCors {
     fn before(&self, _: &mut Request) -> IronResult<()> {
-        Err(IronError::new(FakeError, (Status::Ok, "")))
+        use iron::method::Method::*;
+        let content_type = Header(ContentType::json());
+        let allow_origin = Header(AccessControlAllowOrigin::Any);
+        let allow_method = Header(AccessControlAllowMethods(vec![Get, Post, Put, Delete, Options]));
+        Err(IronError::new(FakeError, (Status::Ok, content_type, allow_origin, allow_method)))
     }
 }

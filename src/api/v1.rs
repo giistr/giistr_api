@@ -6,7 +6,6 @@
 // except according to those terms.
 
 use api::{repo, tag, user, repository_tag_assoc, not_found};
-use backit::responses;
 use iron::Request;
 use router::Router;
 
