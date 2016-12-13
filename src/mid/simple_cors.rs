@@ -35,16 +35,21 @@ impl fmt::Display for FakeError {
 }
 
 impl BeforeMiddleware for SimpleCors {
-    fn before(&self, _: &mut Request) -> IronResult<()> {
+    fn before(&self, req : &mut Request) -> IronResult<()> {
         use iron::method::Method::*;
-        let content_type = Header(ContentType::json());
-        let allow_origin = Header(AccessControlAllowOrigin::Any);
-        let allow_method = Header(AccessControlAllowMethods(vec![Get, Post, Put, Delete, Options]));
-        let allow_headers = Header(AccessControlAllowHeaders(vec![
-            UniCase("x-github-token".to_owned()),
-            UniCase("content-type".to_owned())
-        ]));
-        let modifiers = (Status::Ok, content_type, allow_origin, allow_method, allow_headers);
-        Err(IronError::new(FakeError, modifiers))
+        match req.method {
+            Options => {
+                let content_type = Header(ContentType::json());
+                let allow_origin = Header(AccessControlAllowOrigin::Any);
+                let allow_method = Header(AccessControlAllowMethods(vec![Get, Post, Put, Delete, Options]));
+                let allow_headers = Header(AccessControlAllowHeaders(vec![
+                    UniCase("x-github-token".to_owned()),
+                    UniCase("content-type".to_owned())
+                ]));
+                let modifiers = (Status::Ok, content_type, allow_origin, allow_method, allow_headers);
+                Err(IronError::new(FakeError, modifiers))
+            },
+            _ => Ok(()),
+        }
     }
 }
