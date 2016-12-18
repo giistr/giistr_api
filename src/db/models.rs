@@ -43,6 +43,8 @@ pub struct Repo {
 
     pub user_id: String,
     pub github_repo_id: String,
+    pub repository_name: String,
+    pub user_login: String,
 }
 
 #[derive(Debug, Eq, PartialEq, Default, Clone, AsChangeset, Identifiable, Queryable, Serialize, Deserialize, Insertable)]

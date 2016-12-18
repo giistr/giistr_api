@@ -18,6 +18,8 @@ use uuid::Uuid;
 #[derive(Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
 pub struct CreateRepo {
     pub github_repo_id: String,
+    pub repository_name: String,
+    pub user_login: String,
 }
 
 impl Into<Repo> for CreateRepo {
@@ -28,6 +30,8 @@ impl Into<Repo> for CreateRepo {
             updated_at: None,
             user_id: Default::default(),
             github_repo_id: self.github_repo_id,
+            repository_name: self.repository_name,
+            user_login: self.user_login,
         }
     }
 }
