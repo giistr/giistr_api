@@ -42,7 +42,7 @@ pub struct Repo {
     pub updated_at: Option<i32>,
 
     pub user_id: String,
-    pub github_repo_id: String,
+    pub github_repo_id: i32,
     pub repository_name: String,
     pub user_login: String,
 }

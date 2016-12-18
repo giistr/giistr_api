@@ -17,7 +17,7 @@ use uuid::Uuid;
 
 #[derive(Debug, Eq, PartialEq, Default, Clone, Serialize, Deserialize)]
 pub struct CreateRepo {
-    pub github_repo_id: String,
+    pub github_repo_id: i32,
     pub repository_name: String,
     pub user_login: String,
 }
@@ -44,18 +44,13 @@ pub fn create(ctx: Context, req: &mut Request) -> IronResult<Response> {
     // it must contains exlicitly ONE CreateRepo struct
     let cr = try_or_json_error!(json::from_body::<CreateRepo, _>(&mut req.body));
 
-    // ensure repo id not empty
-    if &*cr.github_repo_id == "" {
-        return responses::bad_request("github_repo_id cannot be empty");
-    }
-
     // convert input to db models
     let mut r: Repo = cr.into();
     // set the current user id to the tag user_id
     r.user_id = ctx.user.id;
 
     // first test if this tag do not exist
-    match repo_repo::get_from_github_repo_id_and_user_id(db, &*r.github_repo_id, &*r.user_id) {
+    match repo_repo::get_from_github_repo_id_and_user_id(db, r.github_repo_id, &*r.user_id) {
         Ok(_) => return responses::bad_request("repo already exist"),
         Err(_) => {/*nothing to do*/},
     };

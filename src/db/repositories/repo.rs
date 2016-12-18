@@ -33,7 +33,7 @@ pub fn get(db: &mut PgConnection, get_id: &str) -> Result<Repo, DieselError> {
     repos.filter(id.eq(get_id)).first::<Repo>(db)
 }
 
-pub fn get_from_github_repo_id_and_user_id(db: &mut PgConnection, get_github_repo_id: &str, get_user_id: &str) -> Result<Repo, DieselError> {
+pub fn get_from_github_repo_id_and_user_id(db: &mut PgConnection, get_github_repo_id: i32, get_user_id: &str) -> Result<Repo, DieselError> {
     use diesel::{LoadDsl, FilterDsl, ExpressionMethods};
     use db::schemas::repos::dsl::{repos, github_repo_id, user_id};
     repos
